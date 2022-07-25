@@ -3,7 +3,7 @@ import 'package:injector/injector.dart';
 
 class UseCaseModule {
   static registerClasses() {
-    final injector = Injector();
+    final injector = Injector.appInstance;
     injector.registerDependency<GetUsers>(() => GetUsers(injector.get()));
   }
 }
