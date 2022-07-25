@@ -1,5 +1,7 @@
 import 'package:clean_arch/app/presentation/pages/home/home_presenter.dart';
+import 'package:clean_arch/app/presentation/pages/user_detail/user_detail_page.dart';
 import 'package:clean_arch/domain/entities/user.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class HomeController extends Controller {
@@ -32,6 +34,11 @@ class HomeController extends Controller {
     _presenter.onSuccessGetUsers = (List<User> data) {
       _users = data;
     };
+  }
+
+  void navigateToUserDetail(User user) {
+    final context = getContext();
+    Navigator.pushNamed(context, UserDetailPage.route, arguments: user);
   }
 
   void _showLoading() {

@@ -8,8 +8,8 @@ import 'package:injector/injector.dart';
 class DataModule {
   static registerClasses() {
     final injector = Injector.appInstance;
-    injector.registerSingleton(() => Endpoints());
-    injector.registerDependency(() {
+    injector.registerSingleton<Endpoints>(() => Endpoints());
+    injector.registerDependency<Dio>(() {
       final dio = Dio();
       dio.options.baseUrl = 'https://reqres.in/api/';
       dio.options.sendTimeout = 30 * 1000;

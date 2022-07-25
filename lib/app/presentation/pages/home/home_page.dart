@@ -5,6 +5,8 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 
 class HomePage extends View {
+  HomePage({Key? key}) : super(key: key);
+
   @override
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
@@ -18,8 +20,9 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
 
   @override
   Widget get view => Scaffold(
+        key: globalKey,
         appBar: AppBar(
-          title: Text('Users'),
+          title: const Text('Users'),
         ),
         body: ControlledWidgetBuilder<HomeController>(
           builder: (BuildContext _, HomeController controller) =>
@@ -30,6 +33,9 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                       itemBuilder: (BuildContext _, int index) {
                         final user = controller.users[index];
                         return ListTile(
+                          onTap: () {
+                            controller.navigateToUserDetail(user);
+                          },
                           leading: Image.network(user.image),
                           title: Text(user.fullName),
                           subtitle: Text(user.email),
