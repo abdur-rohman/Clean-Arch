@@ -1,4 +1,6 @@
 import 'package:clean_arch/app/presentation/pages/home/home_controller.dart';
+import 'package:clean_arch/app/presentation/widgets/user_tile_widget.dart';
+import 'package:clean_arch/domain/entities/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -32,13 +34,11 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                       itemCount: controller.users.length,
                       itemBuilder: (BuildContext _, int index) {
                         final user = controller.users[index];
-                        return ListTile(
-                          onTap: () {
+                        return UserTile(
+                          user: user,
+                          onUserClicked: (User user) {
                             controller.navigateToUserDetail(user);
                           },
-                          leading: Image.network(user.image),
-                          title: Text(user.fullName),
-                          subtitle: Text(user.email),
                         );
                       },
                     ),
